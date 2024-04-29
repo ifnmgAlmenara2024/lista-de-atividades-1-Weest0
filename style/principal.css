@@ -14,16 +14,18 @@ html{
 }
 
 .btn-action{
+    border-radius: 6px 6px 0px 0px;
+    margin-right: 15px;
+    color: #f2f2f2;
     border: none;
-    border-radius: 6px;
-    background-color: white;
-    height: 35px;
-    margin-right: 10px;
+    background-color: transparent;
+    height: 90%;
     cursor: pointer;
 }
 
 .btn-action:hover{
-    background-color: rgb(250, 245, 245);
+    background-color: #f2f2f2;
+    color: black;
 }
 
 .nav-bar{
@@ -32,7 +34,7 @@ html{
     height: 10%;
     padding-left: 15px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
 }
 
 #calculadoraIMC, #calculadoraArea, #conversorTemperatura, #conversorMoedas{

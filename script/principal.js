@@ -1,10 +1,14 @@
 //FUNÇOÊS IMPORTANTES
-function ocultar(elemento){
+function ocultar(elemento, desSelecionar){
     elemento.style.display = 'none';
+    desSelecionar.style.backgroundColor = 'transparent';
+    desSelecionar.style.color = '#f2f2f2';
 }
 
-function desocultar(elemento){
+function desocultar(elemento, selecionado){
     elemento.style.display = 'flex';
+    selecionado.style.backgroundColor = '#f2f2f2';
+    selecionado.style.color = 'black'
 }
 
 function limpar(elemento){
@@ -14,6 +18,8 @@ function limpar(elemento){
 function paraReal(elemento){
     return elemento / 1;
 }
+
+
 
 //PARTE DO IMC
 //Variaveis importantes para o imc
@@ -26,10 +32,10 @@ const exibirResultado = document.getElementById('exibir-resultado');
 
 //Chamar a tela do imc
 btnImc.addEventListener('click', () => {
-    desocultar(campoImc);
-    ocultar(campoArea);
-    ocultar(campoConversor);
-    ocultar(campoTemperatura);
+    desocultar(campoImc, btnImc);
+    ocultar(campoArea, btnArea);
+    ocultar(campoConversor, btnConversor);
+    ocultar(campoTemperatura, btnTemperatura);
     //Calcula o imc
     btnCalcularImc.addEventListener('click', () => {
         let imc = peso.value / (altura.value * altura.value);
@@ -59,10 +65,10 @@ const btnCalcularArea = document.getElementById('btn-calcular-area');
 const exibirResultadoArea = document.getElementById('exibir-resultado-area');
 
 btnArea.addEventListener('click', () => {
-    desocultar(campoArea);
-    ocultar(campoImc);
-    ocultar(campoTemperatura);
-    ocultar(campoConversor)
+    desocultar(campoArea, btnArea);
+    ocultar(campoImc, btnImc);
+    ocultar(campoTemperatura, btnTemperatura);
+    ocultar(campoConversor, btnConversor);
     btnCalcularArea.addEventListener('click', () => {
         let area = base.value * alturaArea.value;
         exibirResultadoArea.textContent = area;
@@ -78,10 +84,10 @@ const btnConverter = document.getElementById('btn-converter-temperatura');
 const exibirResultadoTemperatura = document.getElementById('exibir-resultado-temperatura');
 
 btnTemperatura.addEventListener('click', () => {
-    desocultar(campoTemperatura);
-    ocultar(campoArea);
-    ocultar(campoImc);
-    ocultar(campoConversor);
+    desocultar(campoTemperatura, btnTemperatura);
+    ocultar(campoArea, btnArea);
+    ocultar(campoImc, btnImc);
+    ocultar(campoConversor, btnConversor);
     btnConverter.addEventListener('click', () => {
         let f = (temperatura.value * 9/5) + 32;
         exibirResultadoTemperatura.textContent = f+"°F";
@@ -108,10 +114,10 @@ const euro = 'Euro (EUR)';
 const libra = 'Libra Esterlina (GBP)';
 
 btnConversor.addEventListener('click', () => {
-    desocultar(campoConversor);
-    ocultar(campoArea);
-    ocultar(campoTemperatura);
-    ocultar(campoImc);
+    desocultar(campoConversor, btnConversor);
+    ocultar(campoArea, btnArea);
+    ocultar(campoTemperatura, btnTemperatura);
+    ocultar(campoImc, btnImc);
     btnConverterMoeda.addEventListener('click', () => {
         let tipoUm = moedaInicial.options[moedaInicial.selectedIndex].text;
         let tipoDois = moedaFinal.options[moedaFinal.selectedIndex].text;
