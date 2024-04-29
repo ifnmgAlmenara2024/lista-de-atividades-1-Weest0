@@ -1,3 +1,4 @@
+//FUNÇOÊS IMPORTANTES
 function ocultar(elemento){
     elemento.style.display = 'none';
 }
@@ -10,6 +11,11 @@ function limpar(elemento){
     elemento.textContent = '';
 }
 
+function paraReal(elemento){
+    return elemento / 1;
+}
+
+//PARTE DO IMC
 //Variaveis importantes para o imc
 const btnImc = document.getElementById('btn-imc');
 const campoImc = document.getElementById('calculadoraIMC');
@@ -43,6 +49,7 @@ btnImc.addEventListener('click', () => {
     });
 });
 
+//PARTE DO CALCULO DE AREA
 //variaveis para a area
 const btnArea = document.getElementById('btn-area');
 const campoArea = document.getElementById('calculadoraArea');
@@ -62,6 +69,7 @@ btnArea.addEventListener('click', () => {
     });
 });
 
+//PARTE DA CONVERSÃO DE TEMPERATURA
 //variaveis para a temperatura
 const btnTemperatura = document.getElementById('btn-temperatura');
 const campoTemperatura = document.getElementById('conversorTemperatura');
@@ -80,6 +88,7 @@ btnTemperatura.addEventListener('click', () => {
     });
 });
 
+//PARTE DO CONVERSOR DE MOEDAS
 //Variaveis do conversor de moedas
 const btnConversor = document.getElementById('btn-conversor');
 const campoConversor = document.getElementById('conversorMoedas');
@@ -93,6 +102,11 @@ const taxaUSD = 5.50;
 const taxaEUR = 6.50;
 const taxaGBP = 7.50;
 
+const real = 'Real (BRL)';
+const dolar = 'Dólar Americano (USD)';
+const euro = 'Euro (EUR)';
+const libra = 'Libra Esterlina (GBP)';
+
 btnConversor.addEventListener('click', () => {
     desocultar(campoConversor);
     ocultar(campoArea);
@@ -100,12 +114,26 @@ btnConversor.addEventListener('click', () => {
     ocultar(campoImc);
     btnConverterMoeda.addEventListener('click', () => {
         let tipoUm = moedaInicial.options[moedaInicial.selectedIndex].text;
-        let tipoDois = moedaFinal.options[moedaInicial.selectedIndex].text;
-        if(tipoUm === 'Real (BRL)' && tipoDois === 'Dólar Americano (USD)'){
-            let resultado = valor.value * taxaUSD;
-            exibirResultadoMoeda.textContent = resultado;
+        let tipoDois = moedaFinal.options[moedaFinal.selectedIndex].text;
+        
+        if(tipoUm === real && tipoDois === dolar || tipoDois == real && tipoUm === dolar){
+            var resultado = valor.value * taxaUSD;
+        } else if(tipoUm === real && tipoDois === euro || tipoDois == real && tipoUm === euro){
+            var resultado = valor.value * taxaEUR;
+        } else if(tipoUm === real && tipoDois === libra || tipoDois === real && tipoUm === libra){
+            var resultado = valor.value * taxaGBP;
         }
-    });
-    //categoriaProduto.options[categoriaProduto.selectedIndex].
-    
+        
+        if(tipoUm === dolar && tipoDois === euro || tipoDois === dolar && tipoUm === euro){
+            var resultado = paraReal(taxaUSD) * taxaEUR; 
+        } else if(tipoUm === dolar && tipoDois === libra || tipoDois === libra && tipoUm === dolar){
+            var resultado = paraReal(taxaUSD) * taxaGBP;
+        }
+
+        if(tipoUm === libra && tipoDois === euro || tipoDois === libra && tipoUm == euro){
+            var resultado = paraReal(taxaGBP) * taxaEUR;
+        }
+
+        exibirResultadoMoeda.textContent = resultado.toFixed(2);
+    });    
 });
