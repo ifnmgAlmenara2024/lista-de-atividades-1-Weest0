@@ -135,5 +135,5 @@ btnConversor.addEventListener('click', () => {
         }
 
         exibirResultadoMoeda.textContent = resultado.toFixed(2);
-    });    
+    });
 });
